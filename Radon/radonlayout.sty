@@ -1,0 +1,58 @@
+%%
+%% This is file `jglayout.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% ./jglayout.dtx  (with options: `code')
+%% File: jglayout.dtx Copyright (C) 2004 Jonathan Gilligan
+%%
+%% This program is free software; you can redistribute it and/or
+%% modify it under the terms of the GNU General Public License
+%% as published by the Free Software Foundation; either version 2
+%% of the License, or (at your option) any later version.
+%%
+%% This program is distributed in the hope that it will be useful,
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%% GNU General Public License for more details.
+%%
+%% You should have received a copy of the GNU General Public License along with
+%% this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+%% Place - Suite 330, Boston, MA  02111-1307, USA.
+%%
+%% For error reports contact me at jonathan.gilligan@vanderbilt.edu.
+%%
+\ProvidesFile{radonlayout.sty}%
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesClass{radonlayout}[2005/01/21]%
+\PassOptionsToPackage{margin=1in}{geometry} % set margins to 1 inch
+\PassOptionsToPackage{}{titling}
+\RequirePackage{geometry}%
+\RequirePackage{titling}%
+\RequirePackage{titlesec}%
+\RequirePackage{fancyhdr}%
+\RequirePackage{lastpage}%
+\RequirePackage{qqq}
+\setlength{\droptitle}{-1in}
+\pretitle{\begin{center}\Large\bfseries}
+\posttitle{\par\end{center}\vskip 0.2em}
+\preauthor{\begin{center}%
+  \large\sffamily
+  \begin{tabular}[t]{c}}
+\postauthor{\end{tabular}\par\end{center}}
+\predate{\begin{center}\large\sffamily}
+\postdate{\par\end{center}}
+
+\titleformat*{\section}{\large\sffamily\bfseries}
+\titleformat*{\subsection}{\sffamily\bfseries}
+\titleformat*{\subsubsection}{\bfseries\scshape}
+
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\lhead{\slshape \leftmark}
+\rhead{\slshape \rightmark}
+\cfoot{--\thepage\ of \pageref{LastPage}--}
+\endinput
+%%
+%% End of file `jglayout.sty'.

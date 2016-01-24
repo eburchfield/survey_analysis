@@ -1,0 +1,107 @@
+%%
+%% This is file `jgknitr.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% ./jgknitr.dtx  (with options: `code')
+%% File: jgknitr.dtx Copyright (C) 2004 Jonathan Gilligan
+%%
+%% This program is free software; you can redistribute it and/or
+%% modify it under the terms of the GNU General Public License
+%% as published by the Free Software Foundation; either version 2
+%% of the License, or (at your option) any later version.
+%%
+%% This program is distributed in the hope that it will be useful,
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%% GNU General Public License for more details.
+%%
+%% You should have received a copy of the GNU General Public License along with
+%% this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+%% Place - Suite 330, Boston, MA  02111-1307, USA.
+%%
+%% For error reports contact me at jonathan.gilligan@vanderbilt.edu.
+%%
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesPackage{radon_knitr}
+
+\DeclareOption{bibtex}{\typeout{Using BibTeX as biblatex backend}\PassOptionsToPackage{backend=bibtex}{biblatex}}
+\DeclareOption{biber}{\typeout{Using BIBER as biblatex backend}\PassOptionsToPackage{backend=biber}{biblatex}}
+
+\ExecuteOptions{bibtex}
+
+\ProcessOptions\relax
+
+\RequirePackage{radonlayout}
+\RequirePackage{amsmath}
+\RequirePackage{csquotes}
+\RequirePackage{listings}
+\RequirePackage{xcolor}
+\PassOptionsToPackage{per-mode=symbol}{siunitx}
+\RequirePackage{siunitx}
+\RequirePackage{dcolumn}
+\RequirePackage{multirow}
+\PassOptionsToPackage{style=authoryear-comp,%
+sortcites=true,abbreviate=true,%
+dashed=false,isbn=false,autocite=inline}{biblatex}
+\RequirePackage{biblatex}
+\PassOptionsToPackage{margin=10pt,font=small,textfont=sl,labelfont=bf,format=hang,indent=0pt}{caption}
+\RequirePackage{caption}
+\RequirePackage{subcaption}  % an alternative package for sub figures
+\RequirePackage{url}
+\RequirePackage{gfsdidot}
+\RequirePackage{fontenc}
+\PassOptionsToPackage{T1}{fontenc}
+
+\renewbibmacro{in:}{%
+  \ifentrytype{article}{}{%
+  \printtext{\bibstring{in}\intitlepunct}}} % removes in for articles
+
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcommand{\subfloat}[2][need a sub-caption]{\subcaptionbox{#1}{#2}}
+
+\renewcommand{\finalnamedelim}{ \& }%
+\renewcommand{\revsdnamedelim}{,}
+\AtBeginBibliography{%
+    \renewcommand*{\mkbibnamelast}[1]{\textsc{#1}}%
+    \renewcommand*{\mkbibnamefirst}[1]{\textsc{#1}}%
+    \renewcommand*{\mkbibnameprefix}[1]{\textsc{#1}}%
+    \renewcommand*{\mkbibnameaffix}[1]{\textsc{#1}}%
+}%
+\renewbibmacro*{name:andothers}{% Based on name:andothers from biblatex.def
+    \ifboolexpr{
+        test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+        and
+        test \ifmorenames
+    }
+    {\ifnumgreater{\value{liststop}}{1}
+        {\finalandcomma}
+        {}%
+        \andothersdelim\bibstring[\emph]{andothers}}
+    {}}
+
+
+\definecolor{keywordcolor}{rgb}{0.1,0.3,0.2}
+\definecolor{Rcommentcolor}{rgb}{0.0,0.6,0.6}
+\definecolor{Rcolor}{rgb}{0.1,0,0.4}
+\definecolor{Rnumbercolor}{rgb}{0.4,0,0.4}
+
+\lstdefinestyle{Rstyle}{fancyvrb=false,escapechar=`,language=R,%
+    basicstyle={\color{Rcolor}\Sweavesize\ttfamily},% some want \ttfamily too
+    backgroundcolor=\Rbackground,%
+    showstringspaces=false,%
+    keywordstyle ={\color{Rcolor}\ttfamily},%
+    commentstyle={\color{Rcommentcolor}\ttfamily\itshape},%
+    numberstyle={\color{Rnumbercolor}\ttfamily},
+    literate={<-}{{<\textendash}}2{<<-}{{<<\textendash}}3,%
+    alsoother={$},%
+    alsoletter={.<-},%
+    otherkeywords={!,!=,~,$,*,\&,\%/\%,\%*\%,\%\%,<-,<<-,/},%
+    escapeinside={(*}{*)}}%
+
+
+\endinput
+%%
+%% End of file `jgknitr.sty'.

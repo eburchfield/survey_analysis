@@ -1,0 +1,35 @@
+---
+title: "Survey Analysis"
+author: "Emily Burchfield"
+date: "October 19, 2015"
+output: pdf_document
+---
+#R notebook - script and pull out R markdown from script
+#git
+
+# Data Notes
+
+There are 318 farmers across 6 communities:
+
+```{r}
+source("ses.R")
+table(GN)
+#call function 
+plot()
+#cache = TRUE
+#purl <- Rmarkdown into script
+```
+
+
+
+```{r}
+summary(cars)
+```
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

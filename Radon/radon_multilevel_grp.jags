@@ -1,0 +1,22 @@
+## @knitr radon_multilevel_grp_jags
+# FILE: radon.multilevel.grp.jags
+#
+# JAGS  code for multilevel model for radon
+#
+model {
+  for (i in 1:n){
+    y[i] ~ dnorm (y.hat[i], tau.y)
+    y.hat[i] <- a[county[i]] + b * x[i]
+  }
+  b ~ dnorm(0,0.0001) # sigma = 100
+  tau.y <- pow(sigma.y, -2)
+  sigma.y ~ dunif (0, 100)
+
+  for (j in 1:n.counties){
+    a[j] ~ dnorm (g0 + g1 * u[j], tau.a)
+  }
+  g1 ~ dnorm(0,0.0001) # sigma = 100
+  g0 ~ dnorm (0, .0001) # sigma = 100
+  tau.a <- pow(sigma.a, -2)
+  sigma.a ~ dunif (0, 100)
+}
