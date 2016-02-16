@@ -21,12 +21,13 @@ c1 %>% group_by(irrigtype, ADP1_F1) %>%
   summarise(n = n())
 
 #COMMUNITY GROUPED DATA
-d %>% group_by(community) %>%
+d %>% group_by(HI4) %>%
   #summarise_each(funs(mean), AllPaddyAcres, ChenaAcres, HighlandAcres)
+  #table(c1$agrowell_owner)
   
-  summarise_each(funs(mean(., na.rm = TRUE), sd(., na.rm = TRUE), max(., na.rm = TRUE), min(., na.rm = TRUE)), chenacost)
+  #summarise_each(mean(., na.rm = TRUE), sd(., na.rm = TRUE), c1$agrowell_owner)
 
-  #summarise_each(funs(n_distinct()), tractor2o, tractor4o)
+  summarise_each(n_distinct(), agrowell_owner)
 
 count(distinct(d), tractor2o, tractor4o)
   
@@ -57,8 +58,8 @@ d%>%
 
 #just group - look at water ownership by group
 d%>%
-  group_by(community)%>%
-  select(dwo)%>%
+  group_by(HI4)%>%
+  select(agrowell_user)%>%
   table() %>%
   head()
 

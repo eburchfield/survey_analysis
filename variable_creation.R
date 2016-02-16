@@ -4,7 +4,6 @@ require(ggplot2)
 require(lme4)
 require(rjags)
 require(ggmcmc)
-require(string)
 require(BEST)
 require(foreign)
 
@@ -61,8 +60,8 @@ te[is.na(te)] <- 0
 c1$tail_end <- te
 
 #minority flag (1 = S, 2 = T)
-minority <- ifelse(c1$HH_K.1 == 1, 0, 1)
-c1$minority <- minority
+sinhalese <- ifelse(c1$HH_K.1 == 1, 1,0)
+c1$sinhalese <- sinhalese
 
 
 #female flag (1 = M, 2 = F)
@@ -120,5 +119,6 @@ c1$fo <- ifelse(c1$SAT1_1 == 1, 1, 0)  #note that there were entries with value 
 #practiced in Y2014
 c1$bm_2014 <- ifelse(c1$ADP1_C1 == 2, 1, ifelse(c1$ADP1_C1 == 3, 1, 0))
 
-
+#write out dataframe
+#save(c1, file="c1_data_full.Rda")
 

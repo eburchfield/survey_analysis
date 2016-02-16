@@ -3,7 +3,9 @@
 #add SPSS if statement for future files
 
 library(memisc)
+library(dplyr)
 library(stringr)
+
 
 source('seads_data_utils.R') 
 
@@ -46,6 +48,8 @@ process_c1 <- function(filename = 'c1.csv', data.dir = './data'){
   c1 <<- ds
   c1_names <<- names(ds)
 }
+
+process_c1()
 
 
 

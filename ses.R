@@ -54,12 +54,12 @@ cty.sds <- mean ( sqrt (cty.vars[! is.na(cty.vars )])) / sqrt ( sample.size )
 cty.sds.sep <- sqrt ( tapply (ses,county , var ) / sample.size )
 y.limits <- c (1 ,35)
 
-y <- ses  #replace later
+y <- c1$agrowell_user  #replace later
 
 #lmer
-M0 <- lmer(y ~ 1 + (1|county))
+M0 <- lmer(y ~ 1 + (1|c1$HI4_Name))
 summary(M0)
-coef(M0)$county
+#coef(M0)$
 
 #jags
 library(rjags)
